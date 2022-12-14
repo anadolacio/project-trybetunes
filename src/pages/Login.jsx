@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { createUser } from '../services/userAPI';
 import { Redirect } from 'react-router-dom';
+import { createUser } from '../services/userAPI';
 
 class Login extends React.Component {
   state = {
