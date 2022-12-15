@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { Redirect } from 'react-router-dom';
 import { createUser } from '../services/userAPI';
 
@@ -23,10 +22,11 @@ class Login extends React.Component {
     }
   };
 
-  buttonSubmit = async () => {
+  buttonSubmit = () => {
     const { user } = this.state;
-    this.setState({ loading: true });
-    await createUser({ name: user });
+    this.setState({ loading: true }, async () => {
+      await createUser({ name: user });
+    });
     this.setState({ loading: false });
   };
 
@@ -64,11 +64,5 @@ class Login extends React.Component {
     );
   }
 }
-
-Login.propTypes = {
-  history: PropTypes.shape({
-    push: PropTypes.func.isRequired,
-  }).isRequired,
-};
 
 export default Login;
