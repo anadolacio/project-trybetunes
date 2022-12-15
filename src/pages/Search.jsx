@@ -1,10 +1,12 @@
 import React from 'react';
 import Header from '../components/Header';
+// import searchAlbumsAPI from '../services/searchAlbumsAPI';
 
 class Search extends React.Component {
   state = {
     artist: '',
     isButtonDisabled: true,
+    // albuns: [],
   };
 
   onInputChange = (event) => {
@@ -21,9 +23,12 @@ class Search extends React.Component {
   };
 
   buttonSubmit = () => {
-    // const { user } = this.state;
+    // const { user, albuns, loading } = this.state;
+    // this.setState({
+    //   artist: '',
+    // });
     // this.setState({ loading: true }, async () => {
-    //   await createUser({ name: user });
+    //   await createUser({ name: artist });
     // });
     // this.setState({ loading: false });
   };
@@ -55,6 +60,9 @@ class Search extends React.Component {
 
           </button>
         </form>
+        <div>
+          {/* { alnu} */}
+        </div>
       </div>
 
     );
