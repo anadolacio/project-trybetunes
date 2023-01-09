@@ -12,13 +12,13 @@ class MusicCard extends Component {
     this.getMusics();
   }
 
-  favoriteSongsSaved = async (music, { target: { checked } }) => {
+  favoriteSongsSaved = async (song, { target: { checked } }) => {
     this.setState({ loading: true });
     if (checked) {
-      await addSong(music);
+      await addSong(song);
       await this.getMusics();
     } else {
-      await removeSong(music);
+      await removeSong(song);
       await this.getMusics();
     }
   };
@@ -37,31 +37,31 @@ class MusicCard extends Component {
     return (
       <div>
         {loading ? <p> Carregando...</p>
-          : musicSelected.filter((music) => music.previewUrl).map((music) => (
-            <div key={ music.trackId }>
+          : musicSelected.filter((song) => song.previewUrl).map((song) => (
+            <div key={ song.trackId }>
 
-              {music.trackName}
+              {song.trackName}
               <audio
                 data-testid="audio-component"
-                src={ music.previewUrl }
+                src={ song.previewUrl }
                 controls
               >
                 <track kind="captions" />
-                O seu navegador não suporta o elemento
+                Your browser does not support the element
                 {' '}
                 <code>audio</code>
                 .
               </audio>
-              <label htmlFor={ music.trackId }>
+              <label htmlFor={ song.trackId }>
                 <input
                   type="checkbox"
-                  id={ music.trackId }
-                  onChange={ (event) => this.favoriteSongsSaved(music, event) }
+                  id={ song.trackId }
+                  onChange={ (event) => this.favoriteSongsSaved(song, event) }
                   checked={ favoriteMusic
-                    .some((element) => element.trackId === music.trackId) }
-                  data-testid={ `checkbox-music-${music.trackId}` }
+                    .some((favorite) => favorite.trackId === song.trackId) }
+                  data-testid={ `checkbox-music-${song.trackId}` }
                 />
-                Favorita
+                Favorite
               </label>
             </div>
           ))}
